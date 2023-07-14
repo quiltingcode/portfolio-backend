@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 
 class Project(models.Model):
@@ -8,11 +9,15 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255, default='project')
     description = models.TextField(blank=True, default='a brilliant project')
-    tech_stack = models.CharField(max_length=255, blank=False, default='HTML')
+    tech_stack = TaggableManager(
+        help_text='A comma-separated list of tags',
+        blank=True,
+        verbose_name='tech stack used'
+    )
     image = models.ImageField(
         upload_to='images/', default='../profile-pic_nfhakf'
     )
-    
+
     class Meta:
         ordering = ['-created_at']
 

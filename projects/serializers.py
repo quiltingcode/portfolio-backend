@@ -1,8 +1,11 @@
 from rest_framework import serializers
 from .models import Project
+from taggit.serializers import (TagListSerializerField,
+                                TaggitSerializer)
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
+    tech_stack = TagListSerializerField()
 
     def validate_image(self, value):
         if value.size > 1024 * 1024 * 2:
