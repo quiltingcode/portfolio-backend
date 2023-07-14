@@ -2,6 +2,7 @@ from rest_framework import generics, permissions, filters
 from .serializers import ProjectSerializer
 from portfolio.permissions import IsOwnerOrReadOnly
 from .models import Project
+import django_filters.rest_framework
 
 
 class ProjectList(generics.ListCreateAPIView):
@@ -17,7 +18,7 @@ class ProjectList(generics.ListCreateAPIView):
 
 class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve a project, or update or delete it by id if you 
+    Retrieve a project, or update or delete it by id if you
     are logged in as admin.
     """
     serializer_class = ProjectSerializer

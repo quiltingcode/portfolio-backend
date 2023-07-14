@@ -2,6 +2,7 @@ from rest_framework import generics, permissions
 from portfolio.permissions import IsOwnerOrReadOnly
 from .models import Contact
 from .serializers import ContactSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ContactList(generics.ListCreateAPIView):
