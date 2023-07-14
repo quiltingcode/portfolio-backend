@@ -20,7 +20,7 @@ class ProjectList(generics.ListCreateAPIView):
         DjangoFilterBackend,
     ]
     search_fields = [
-        'tech_stack',
+        'tech_stack__name',
     ]
 
 
