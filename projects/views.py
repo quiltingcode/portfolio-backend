@@ -10,6 +10,9 @@ class ProjectList(generics.ListCreateAPIView):
     The perform_create method associates the event with the logged in user.
     """
     serializer_class = ProjectSerializer
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]
     queryset = Project.objects.all()
 
 
@@ -18,4 +21,5 @@ class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve an event, or update or delete it by id if you own it.
     """
     serializer_class = ProjectSerializer
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = Project.objects.all()
