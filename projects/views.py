@@ -6,8 +6,7 @@ from .models import Project
 
 class ProjectList(generics.ListCreateAPIView):
     """
-    List events or create an event if logged in
-    The perform_create method associates the event with the logged in user.
+    List projects or create a project if logged in
     """
     serializer_class = ProjectSerializer
     permission_classes = [
@@ -18,7 +17,8 @@ class ProjectList(generics.ListCreateAPIView):
 
 class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve an event, or update or delete it by id if you own it.
+    Retrieve a project, or update or delete it by id if you 
+    are logged in as admin.
     """
     serializer_class = ProjectSerializer
     permission_classes = [IsOwnerOrReadOnly]
