@@ -3,7 +3,6 @@ from .models import Project
 
 
 class ProjectSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
 
     def validate_image(self, value):
         if value.size > 1024 * 1024 * 2:
