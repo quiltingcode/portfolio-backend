@@ -2,7 +2,7 @@ from rest_framework import generics, permissions, filters
 from .serializers import ProjectSerializer
 from portfolio.permissions import IsOwnerOrReadOnly
 from .models import Project
-import django_filters.rest_framework
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class ProjectList(generics.ListCreateAPIView):
@@ -14,6 +14,14 @@ class ProjectList(generics.ListCreateAPIView):
         permissions.IsAuthenticatedOrReadOnly
     ]
     queryset = Project.objects.all()
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    search_fields = [
+        'tech_stack',
+    ]
 
 
 class ProjectDetail(generics.RetrieveUpdateDestroyAPIView):
