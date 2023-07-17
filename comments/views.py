@@ -18,5 +18,4 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve a comment, or update or delete it by id if you are admin.
     """
     serializer_class = CommentDetailSerializer
-    permission_classes = [IsOwnerOrReadOnly]
     queryset = Comment.objects.all()
