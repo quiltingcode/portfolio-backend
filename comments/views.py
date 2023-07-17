@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from portfolio.permissions import IsOwnerOrReadOnly
 from .models import Comment
 from .serializers import CommentSerializer, CommentDetailSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class CommentList(generics.ListCreateAPIView):
@@ -11,6 +12,12 @@ class CommentList(generics.ListCreateAPIView):
     """
     serializer_class = CommentSerializer
     queryset = Comment.objects.all()
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = ['project']
 
 
 class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
