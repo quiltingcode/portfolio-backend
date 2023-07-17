@@ -23,10 +23,12 @@ cycler==0.11.0
 debugpy==1.6.7
 decorator==5.1.1
 defusedxml==0.7.1
+dj-database-url==2.0.0
 dj-rest-auth==2.1.9
 Django==3.2.20
 django-allauth==0.44.0
 django-cloudinary-storage==0.3.0
+django-cors-headers==4.2.0
 django-filter==23.2
 django-taggit==4.0.0
 djangorestframework==3.14.0
@@ -39,6 +41,7 @@ fonttools==4.40.0
 fqdn==1.5.1
 gitdb==4.0.10
 GitPython==3.1.31
+gunicorn==20.1.0
 idna==3.4
 ipykernel==6.23.2
 ipython==8.14.0
