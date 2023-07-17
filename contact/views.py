@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, filters
 from portfolio.permissions import IsOwnerOrReadOnly
 from .models import Contact
 from .serializers import ContactSerializer
@@ -11,6 +11,11 @@ class ContactList(generics.ListCreateAPIView):
     """
     serializer_class = ContactSerializer
     queryset = Contact.objects.all()
+    filter_backends = [
+        filters.OrderingFilter,
+        filters.SearchFilter,
+        DjangoFilterBackend,
+    ]
 
 
 class ContactDetail(generics.RetrieveUpdateDestroyAPIView):
